@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Brain Tumor Detection</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>
+    
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+   
+    <script src="{{ url_for('static', filename='js/newjs.js') }}" type="text/javascript"></script>
+
+    
+
+    
+  
+  </head>
+  <body>
+      <style>
+      body{
+          font-family: 'Roboto', sans-serif;
+        }
+        .nav-back{
+            background: rgba(17, 219, 207,0.8);
+            color: #fff;
+        }
+        .navbar-brand{
+            color:#000;
+            font-weight:bold;
+        }
+        .navbar-brand:hover{
+            color: #fff;
+        }
+        .nav-link{
+            color:#000;
+            font-weight:bold;
+
+        }
+        .nav-link:hover{
+            color:#fff;
+        }
+        .navbar-toggler{
+            outline: none!important;
+        }
+        /*hero section*/
+        #hero{
+            width: 100%;
+            height: 80vh;
+            background: url("E:/Ashwini/BrainTumorDetection/images/hero.jpg") center;
+            background-size: cover;
+        }
+        #hero .container{
+            padding-top: 80px;    
+        }
+        #hero::before{
+            content:"";
+            background: rgba(0,0,0,0.6);
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80vh;
+        }
+        #hero h1{
+            margin: 0 0 10px 0;
+            font-size: 44px;
+            font-weight: bold;
+            line-height: 56px;
+            color:#fff;
+
+        }
+        #hero h2{
+            color:#fff;
+            margin-bottom: 40px;
+            font-size: 15px;
+            font-weight: light;
+            letter-spacing: 0.5px;
+        }
+        .main-btn{
+            font-weight: bold;
+            font-size: 16px;
+            letter-spacing: 1px;
+            display: inline-block;
+            padding: 8px 28px;
+            border-radius: 50px;
+            transition: 0.5s;
+            margin: 10px;
+            border: 2px solid #fff;
+            color: #fff;
+
+        }
+        .main-btn:hover{
+            background: #11dbcf;
+            border: 2px solid #11dbcf;
+            text-decoration: none;
+            color: #fff;
+        }
+        .abouts{
+            text-align: center;
+            padding: 70px 20px 80px 20px;
+            background: rgba(17, 219, 207,0.8);
+        }
+        .about .icon{
+            margin: 0 auto;
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items:center;
+            justify-content:center;
+            position:relative;
+            background: #ffff;
+            border-radius: 50px;
+        }
+        .abouts h4{
+            margin: 10px 0 15px 0;
+            font-weight: bold;
+            font-size: 22px;
+        }
+        .abouts p{
+            line-height: 24px;
+            font-size: 14px;
+            margin-bottom: 0; 
+        }
+        .contact-box {
+            color: #000;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(65, 76, 100, 0.05);
+            padding: 20px 0 30px 0;
+            background:#11dbcf;
+        }  
+        .contact-box i {
+            font-size: 32px;
+            color: #fff;
+            border-radius: 50%;
+            padding: 8px;
+        }  
+        .contact-box h3 {
+            font-size: 20px;
+            color: #000;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .contact-box p {
+            padding: 0;
+            line-height: 24px;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+        .contact button{
+            background: #11dbcf;
+            border: none;
+            padding: 10px;
+        }
+        .contact button:hover{
+        background: #00d9ff;
+        color: #fff;
+        } 
+        .footer {
+            text-align: center;
+            font-size: 0.9rem;
+            background:rgba(17, 219, 207,0.8);
+        }
+        .footer .btn-back{
+            background: #fff;
+            color: #00d9ff;
+        }
+        .footer .text{
+            color: #000;
+        }
+      </style>
+    <!--Nav bar-->
+    <nav class="navbar navbar-expand-lg nav-back fixed-top"id="nav">
+        <div class="container">
+            <a href="#" class="navbar-brand">CanCare</a>
+            <button class ="navbar-toggler navbar-toggler-right" type="button"
+            data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+            
+            <i class="fas fa-syringe fa-2x"></i>
+          </button>
+        <div class="collapse navbar-collapse"id="myNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="#hero" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#aboutt" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#Testt" class="nav-link">Test</a>
+                </li>
+                 
+                <li class="nav-item">
+                    <a href="#contactt" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <!--End of Nav bar-->
+    <!--Hero Image-->
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container text-center position-relative">
+            <h1>Your Brain Needs Care</h1>
+            <h2 class="text-uppercase">You can take a quick test here to know about it early</h2>
+            <a href="#Testt"class="main-btn">Take Test</a>
+        </div>
+    </section>
+    <!--End of hero image-->
+    <!--About-->
+    <section id="aboutt" class="about mt-5 mb-3 py-3">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="text-center">About</h2>
+                <p>You might want to know what exactly is a brain tumor.This section will help you learn  including symptoms, treatment options, and considerations for Doctor.</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6-flex align-items-stretch">
+                    <div class="abouts shadow">
+                        <div class="icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>What is Brain Tumor?</h4>
+                        <p>A brain tumor, known as an intracranial tumor, is an abnormal mass of tissue in which cells
+                             grow and multiply uncontrollably, seemingly unchecked by the mechanisms that control normal cells.
+                             The two main groups of brain tumors are termed primary and metastatic.Primary brain tumors include tumors that originate from the
+                            tissues of the brain.Metastatic brain tumors include tumors that arise
+                             elsewhere in the body and migrate to the brain</p>
+                    </div>
+                </div>
+             <!---->
+                <div class="col-lg-4 col-md-6-flex align-items-stretch mt-4 mt-md-0">
+                    <div class="abouts shadow">
+                        <div class="icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>What Causes Brain Tumor?</h4>
+                        <p>Brain tumors are thought to arise when certain genes on the chromosomes of a
+                        cell are damaged and no longer function properly. These genes normally regulate the 
+                        rate at which the cell divides (if it divides at all) and repair genes that fix defects 
+                        of other genes, as well as genes that should cause the cell to self-destruct if the damage 
+                        is beyond repair.Once a cell is dividing rapidly and internal mechanisms to check its growth are damaged, the cell can eventually grow into a tumor.</p>
+                    </div>
+                </div>
+               <!----->
+
+               <!---->
+                <div class="col-lg-4 col-md-6-flex align-items-stretch mt-4 mt-md-0">
+                    <div class="abouts shadow">
+                        <div class="icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>What are the Symptoms?</h4>
+                        <p>The following may accompany different types of brain tumors:Headaches that may be more severe in the morning or awaken the patient at night,Seizures or convulsions,
+                        Difficulty thinking, speaking or articulating,Personality changes,Weakness or paralysis in one part or one side of the body,
+                        Loss of balance or dizziness,Vision changes,Hearing changes,Facial numbness or tingling,Nausea or vomiting, swallowing difficulties,
+                        Confusion and disorientation</p>
+                    </div>
+                </div>
+                <!----->
+
+                <!---->
+                <div class="col-lg-4 col-md-6-flex align-items-stretch mt-4">
+                    <div class="abouts shadow">
+                        <div class="icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>Dignosis</h4>
+                        <p>Sophisticated imaging techniques can pinpoint brain tumors.
+                         Diagnostic tools include computed tomography (CT or CAT scan) and magnetic resonance imaging (MRI).
+                        Other MRI sequences can help the surgeon plan the resection of the tumor based on the location of the normal 
+                        nerve pathways of the brain. Intraoperative MRI also is used during surgery to guide tissue biopsies and tumor removal. 
+                        Magnetic resonance spectroscopy (MRS) is used to examine the tumor's chemical profile and determine the nature of the lesions
+                        seen on the MRI. Positron emission tomography (PET scan) can help detect recurring brain tumors.</p>
+                    </div>
+                </div>
+                <!----->
+
+                <!---->
+                <div class="col-lg-4 col-md-6-flex align-items-stretch mt-4">
+                    <div class="abouts shadow">
+                        <div class="icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>Treatments</h4>
+                        <p>Brain tumor treatment depends on the tumor location, size and type. Doctors often use a combination of therapies to treat a tumor.
+                         Your treatment options might include:Surgery: When possible, surgeons remove the tumor.Radiation therapy: High doses of X-rays destroy brain tumor cells or shrink the tumor.
+                        Chemotherapy:Drugs to kill cancer cells.Immunotherapy:It is Also called biological therapy where your body's own immune system to fight cancer.
+                        Targeted therapy: Drugs target specific features in cancer cells without harming healthy cells.Laser thermal ablation: This treatment uses lasers to heat and destroy tumor cells.
+                        Watchful waiting/active surveillance: A doctor closely monitors the tumor for signs of growth with regular testing.</p>
+                    </div>
+                </div>
+                <!----->
+       
+                <!---->
+                <div class="col-lg-4 col-md-6-flex align-items-stretch mt-4">
+                    <div class="abouts shadow">
+                        <div class="icon">
+                            <i class="fas fa-brain"></i>
+                         </div>
+                         <h4>About Us</h4>
+                         <p>The fact that treating brain tumors needs constant observations, medication, a lot of scanning, tests so to make things easy all in one. 
+                        Whether it is learning about Brain tumors or contacting doctors, here one can take a quick test and know if the brain is affected or not. 
+                        And instead of software set up or different types of GUI. Here it will be helpful to even doctors, as all it needs is network connection and get the result with just one click.</p>
+                    </div>
+                </div>
+                <!---->
+        </div>
+    </section>
+
+    <!--End of about-->
+
+    <!--Test-->
+    <section class ="Test section clearfix py-5">
+        <div class="container">
+            <div class="Test">
+                <img src="E:/Ashwin/iBrainTumorDetection/images/hb.jpg" class="test-img img-fluid mb-3 mb-lg-0 rounded"  alt="Test">
+            </div>
+        </div>
+    </section>
+    <br><br><br><br> 
+    <!--end of Test-->
+
+    <!--Test-->
+    <section id="Testt" class="test">
+        <div class="container">
+    
+          <div class="section-title text-center mt-5">
+            <h2>Test</h2>
+            <p>Take a quick test here.</p>
+  
+            <form id="upload-file" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" class="btn btn-success" id="imageUpload" accept=".png, .jpg, .jpeg">
+           </form>
+       
+       
+           <div class="image-section" style="display:none;">
+                <img id="imagePreview"  class="img-responsive" src="#" style="width:300px;height:300px;"/><br><br>
+                <div>
+                   <button type="button" class="btn btn-info btn-lg " id="btn-predict">Predict!</button>
+                </div>
+           </div>
+       
+       
+       
+           <div class="loader" style="display:none;"></div>
+       
+           <h3 id="result">
+               <span> </span>
+           </h3>
+      
+          </div>
+        </div>
+      </section>
+      <br><br> <br><br> 
+  
+  
+      <!--End of Test-->
+
+    <!--Contact-->
+    <br><br> <br><br> <br>
+    <section id="contactt"  class="contact">
+        <div class="container">
+    
+          <div class="section-title text-center mt-5">
+            <h2>Contact</h2>
+            <p>For more details contact us.</p>
+          </div>
+    
+          <div class="row">
+    
+            <div class="col-lg-6">
+    
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="contact-box">
+                    <i class="fas fa-map-signs"></i>
+                    <h3>Address</h3>
+                    <p>Mumbai Zip code: 400610 </p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="contact-box mt-4">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p>test@example.com<br>contact@example.com</p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="contact-box mt-4">
+                    <i class="fas fa-phone"></i>
+                    <h3>Call Us</h3>
+                    <p>8674937582 <br>9983752306</p>
+                  </div>
+                </div>
+              </div>
+    
+            </div>
+    
+            <div class="col-lg-6">
+                <form>
+                    <div class="form-row">
+                      <div class="col-md-6 form-group">
+                        <input type="text" name="name" class="form-control" id="name" 
+                        placeholder="Your Name">
+                        
+                      </div>
+                      <div class="col-md-6 form-group">
+                        <input type="email" class="form-control" name="email" 
+                        id="email" placeholder="Your Email">
+                        
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="subject" 
+                      id="subject" placeholder="Subject" >
+                      </div>
+                    <div class="form-group">
+                      <textarea class="form-control" name="message" rows="5"></textarea>
+                     </div>
+                     <div class="text-center">
+                       <button type="submit" value="Send">Send Message</button></div>
+                </form>
+            </div>
+    
+          </div>
+    
+        </div>
+      </section>
+    <!--end of Contact-->
+
+    <!-- Footer-->
+     <footer class="footer py-4 mt-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 text-lg-left">Copyright © Your Website 2021</div>
+                <div class="col-lg-4 my-3 my-lg-0">
+                    <a class="btn btn-back btn-social mx-2" href="#!">
+                        <i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-back btn-social mx-2" href="#!">
+                            <i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-back btn-social mx-2" href="#!">
+                                <i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="col-lg-4 text-lg-right">
+                    <a class="mr-3 text" href="#!">Privacy Policy</a>
+                    <a href="#!"class="text">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+  </body>
+</html>
